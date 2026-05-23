@@ -9,6 +9,12 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 
 
+// IMPORT ROUTES
+const authRoutes = require("./routes/authRoutes");
+
+const projectRoutes = require("./routes/projectRoutes");
+
+
 // CONFIG
 dotenv.config();
 
@@ -35,10 +41,10 @@ mongoose.connect(process.env.MONGO_URI)
 });
 
 
-// ROUTES
-const authRoutes = require("./routes/authRoutes");
-
+// API ROUTES
 app.use("/api/auth", authRoutes);
+
+app.use("/api/projects", projectRoutes);
 
 
 // DEFAULT ROUTE
