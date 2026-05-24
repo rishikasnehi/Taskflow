@@ -18,6 +18,11 @@ const taskRoutes = require("./routes/taskRoutes");
 
 const dashboardRoutes = require("./routes/dashboardRoutes");
 
+
+// IMPORT MIDDLEWARE
+const errorHandler = require("./middleware/errorMiddleware");
+
+
 // CONFIG
 dotenv.config();
 
@@ -37,7 +42,7 @@ app.use(morgan("dev"));
 // DATABASE CONNECTION
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
-  console.log("MongoDB Connected");
+  console.log("MongoDB Connected Successfully");
 })
 .catch((error) => {
   console.log(error);
@@ -53,10 +58,20 @@ app.use("/api/tasks", taskRoutes);
 
 app.use("/api/dashboard", dashboardRoutes);
 
+
 // DEFAULT ROUTE
 app.get("/", (req, res) => {
-  res.send("TaskFlow API Running");
+
+  res.status(200).json({
+    success: true,
+    message: "TaskFlow API Running Successfully",
+  });
+
 });
+
+
+// ERROR HANDLER
+app.use(errorHandler);
 
 
 // SERVER

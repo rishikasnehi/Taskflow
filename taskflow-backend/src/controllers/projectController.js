@@ -31,6 +31,8 @@ exports.createProject = async (req, res) => {
 
   } catch (error) {
 
+    console.log(error);
+
     res.status(500).json({
       success: false,
       message: "Server error",
@@ -50,8 +52,8 @@ exports.getProjects = async (req, res) => {
     const projects = await Project.find({
       members: req.user._id,
     })
-    .populate("createdBy", "name email")
-    .sort({ createdAt: -1 });
+      .populate("createdBy", "name email")
+      .sort({ createdAt: -1 });
 
     res.status(200).json({
       success: true,
@@ -60,6 +62,8 @@ exports.getProjects = async (req, res) => {
     });
 
   } catch (error) {
+
+    console.log(error);
 
     res.status(500).json({
       success: false,
@@ -77,9 +81,12 @@ exports.getSingleProject = async (req, res) => {
 
   try {
 
-    const project = await Project.findById(req.params.id)
-    .populate("createdBy", "name email")
-    .populate("members", "name email");
+    const project = await Project.findOne({
+      _id: req.params.id,
+      members: req.user._id,
+    })
+      .populate("createdBy", "name email")
+      .populate("members", "name email");
 
     if (!project) {
       return res.status(404).json({
@@ -94,6 +101,8 @@ exports.getSingleProject = async (req, res) => {
     });
 
   } catch (error) {
+
+    console.log(error);
 
     res.status(500).json({
       success: false,
@@ -111,7 +120,10 @@ exports.updateProject = async (req, res) => {
 
   try {
 
-    const project = await Project.findById(req.params.id);
+    const project = await Project.findOne({
+      _id: req.params.id,
+      members: req.user._id,
+    });
 
     if (!project) {
       return res.status(404).json({
@@ -127,15 +139,19 @@ exports.updateProject = async (req, res) => {
         new: true,
         runValidators: true,
       }
-    );
+    )
+      .populate("createdBy", "name email")
+      .populate("members", "name email");
 
     res.status(200).json({
       success: true,
       message: "Project updated successfully",
-      updatedProject,
+      project: updatedProject,
     });
 
   } catch (error) {
+
+    console.log(error);
 
     res.status(500).json({
       success: false,
@@ -153,7 +169,10 @@ exports.deleteProject = async (req, res) => {
 
   try {
 
-    const project = await Project.findById(req.params.id);
+    const project = await Project.findOne({
+      _id: req.params.id,
+      members: req.user._id,
+    });
 
     if (!project) {
       return res.status(404).json({
@@ -170,6 +189,8 @@ exports.deleteProject = async (req, res) => {
     });
 
   } catch (error) {
+
+    console.log(error);
 
     res.status(500).json({
       success: false,
