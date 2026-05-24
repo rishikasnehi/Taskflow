@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  background: #f8fafc;
+}
+
+.dark body {
+  background: #020617;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.btn-primary {
+  @apply bg-primary-500 hover:bg-primary-600 text-white rounded-lg px-4 py-2 font-medium transition-all duration-200;
+}
+
+.btn-secondary {
+  @apply bg-secondary-200 dark:bg-secondary-700 hover:bg-secondary-300 dark:hover:bg-secondary-600 text-secondary-900 dark:text-white rounded-lg px-4 py-2 font-medium transition-all duration-200;
+}
+
+.btn-danger {
+  @apply bg-red-500 hover:bg-red-600 text-white rounded-lg px-4 py-2 font-medium transition-all duration-200;
+}
+
+.btn-ghost {
+  @apply hover:bg-secondary-100 dark:hover:bg-secondary-800 text-secondary-700 dark:text-secondary-300 rounded-lg px-4 py-2 transition-all duration-200;
+}
+
+.btn-icon {
+  @apply p-2 rounded-lg hover:bg-secondary-100 dark:hover:bg-secondary-800 transition-all duration-200;
+}
+
+.input-field {
+  @apply w-full px-4 py-3 rounded-lg border border-secondary-300 dark:border-secondary-700 bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500;
+}
+
+.textarea-field {
+  @apply w-full px-4 py-3 rounded-lg border border-secondary-300 dark:border-secondary-700 bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500;
+}
+
+.card {
+  @apply bg-white dark:bg-secondary-900 rounded-2xl p-6 shadow-sm border border-secondary-200 dark:border-secondary-800;
+}
+
+.card-header {
+  @apply mb-4;
+}
+
+.badge-primary {
+  @apply bg-primary-100 text-primary-700 dark:bg-primary-900 dark:text-primary-300 px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.badge-success {
+  @apply bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.badge-warning {
+  @apply bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300 px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.badge-error {
+  @apply bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300 px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.badge-info {
+  @apply bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 px-2 py-1 rounded-full text-xs font-medium;
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+.glass-effect {
+  @apply bg-white/90 dark:bg-secondary-900/90 backdrop-blur-xl border border-white/20 dark:border-secondary-800;
+}
+
+.divider {
+  @apply border-t border-secondary-200 dark:border-secondary-800;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
