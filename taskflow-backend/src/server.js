@@ -14,6 +14,7 @@ const authRoutes = require("./routes/authRoutes");
 
 const projectRoutes = require("./routes/projectRoutes");
 
+const taskRoutes = require("./routes/taskRoutes");
 
 // CONFIG
 dotenv.config();
@@ -46,6 +47,7 @@ app.use("/api/auth", authRoutes);
 
 app.use("/api/projects", projectRoutes);
 
+app.use("/api/tasks", taskRoutes);
 
 // DEFAULT ROUTE
 app.get("/", (req, res) => {
